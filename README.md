@@ -11,7 +11,7 @@ This project simulates a real-time banking transaction system using:
 - Docker Compose for infrastructure orchestration
 - The pipeline generates synthetic UK banking transactions and streams them into Kafka, processes them with Spark, and persists them into PostgreSQL.
 
-
+-------------------------------------------------------------------------------------------------------
 
 **Architecture**
 
@@ -21,6 +21,7 @@ This project simulates a real-time banking transaction system using:
 - Spark consumes and parses JSON messages.
 - Micro-batches are written to PostgreSQL table raw_transactions.
 
+-------------------------------------------------------------------------------------------------------
 
 **Tech Stack**
 
@@ -31,7 +32,7 @@ PostgreSQL
 Docker & Docker Compose
 Faker (Synthetic Data Generation)
 
-
+-----------------------------------------------------------------------------------------------------------
 
 **Setup Instructions**
 
@@ -47,13 +48,14 @@ Kafka (localhost:9092)
 
 PostgreSQL (localhost:5432)
 
-
+-----xx-----xx-----xx-----
 
 2. Create PostgreSQL Table
 
 Connect to PostgreSQL:
 
 psql -U finflow -d finflow
+
 
 
 Create table:
@@ -70,6 +72,8 @@ CREATE TABLE raw_transactions (
     status TEXT
 );
 
+----xx----xx-----xx---
+
 
 3. Start Kafka Producer
 python producer.py
@@ -77,9 +81,14 @@ python producer.py
 
 This generates synthetic UK banking transactions every second.
 
+
+----xx----xx-----xx---
+
+
 4️. Start Spark Streaming Job
 spark-submit spark_streaming.py
 
+----xx----xx-----xx---
 
 Spark consumes Kafka events and writes them into PostgreSQL.
 
