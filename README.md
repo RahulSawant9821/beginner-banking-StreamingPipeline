@@ -36,27 +36,17 @@ Faker (Synthetic Data Generation)
 
 **Setup Instructions**
 
-1️. Start Infrastructure
-
-docker-compose up -d
-
+1️. Start Infrastructure : docker-compose up -d
 This starts:
+- Zookeeper
+- Kafka (localhost:9092)
+- PostgreSQL (localhost:5432)
 
-Zookeeper
 
-Kafka (localhost:9092)
-
-PostgreSQL (localhost:5432)
-
------xx-----xx-----xx-----
 
 2. Create PostgreSQL Table
 
-Connect to PostgreSQL:
-
-psql -U finflow -d finflow
-
-
+Connect to PostgreSQL: psql -U finflow -d finflow
 
 Create table:
 
@@ -72,38 +62,20 @@ CREATE TABLE raw_transactions (
     status TEXT
 );
 
-----xx----xx-----xx---
 
 
-3. Start Kafka Producer
-python producer.py
-
-
+3. Start Kafka Producer: python producer.py
 This generates synthetic UK banking transactions every second.
 
-
-----xx----xx-----xx---
 
 
 4️. Start Spark Streaming Job
 spark-submit spark_streaming.py
 
-----xx----xx-----xx---
 
 Spark consumes Kafka events and writes them into PostgreSQL.
 
-Sample Transaction Event
-{
-  "transaction_id": "uuid",
-  "timestamp": "2026-02-21T12:34:56",
-  "user_id": 2345,
-  "merchant": "Amazon",
-  "category": "Shopping",
-  "amount": 145.32,
-  "currency": "GBP",
-  "location": "London",
-  "status": "completed"
-}
+
 
 **Key Concepts Demonstrated**
 
