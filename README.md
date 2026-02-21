@@ -1,19 +1,19 @@
-**Real-Time Banking Transaction Streaming Pipeline**
+# Real-Time Banking Transaction Streaming Pipeline
 
 
-**Overview**
+## Overview
 
 This project simulates a real-time banking transaction system using:
 
-- Apache Kafka for event streaming
-- PySpark Structured Streaming for real-time processing
-- PostgreSQL for storage
-- Docker Compose for infrastructure orchestration
+- Apache Kafka for event streaming.
+- PySpark Structured Streaming for real-time processing.
+- PostgreSQL for storage.
+- Docker Compose for infrastructure orchestration.
 - The pipeline generates synthetic UK banking transactions and streams them into Kafka, processes them with Spark, and persists them into PostgreSQL.
 
 -------------------------------------------------------------------------------------------------------
 
-**Architecture**
+## Architecture
 
 - Producer → Kafka → Spark Structured Streaming → PostgreSQL
 - Transaction events are generated every second.
@@ -23,70 +23,41 @@ This project simulates a real-time banking transaction system using:
 
 -------------------------------------------------------------------------------------------------------
 
-**Tech Stack**
+## Tech Stack
 
-Python
-Apache Kafka
-PySpark (Structured Streaming)
-PostgreSQL
-Docker & Docker Compose
-Faker (Synthetic Data Generation)
+- Python.
+- Apache Kafka.
+- PySpark (Structured Streaming).
+- PostgreSQL.
+- Docker & Docker Compose.
+- Faker (Synthetic Data Generation).
 
 -----------------------------------------------------------------------------------------------------------
 
-**Setup Instructions**
+## Setup Instructions
 
 1️. Start Infrastructure : docker-compose up -d
 This starts:
-- Zookeeper
+- Zookeeper.
 - Kafka (localhost:9092)
 - PostgreSQL (localhost:5432)
 
-
-
 2. Create PostgreSQL Table
 
-Connect to PostgreSQL: psql -U finflow -d finflow
-
-Create table:
-
-CREATE TABLE raw_transactions (
-    transaction_id TEXT,
-    timestamp TEXT,
-    user_id INT,
-    merchant TEXT,
-    category TEXT,
-    amount DOUBLE PRECISION,
-    currency TEXT,
-    location TEXT,
-    status TEXT
-);
-
-
+- Connect to PostgreSQL: psql -U finflow -d finflow
 
 3. Start Kafka Producer: python producer.py
 This generates synthetic UK banking transactions every second.
 
-
-
-4️. Start Spark Streaming Job
+4. Start Spark Streaming Job
 spark-submit spark_streaming.py
 
+------------------------------------------------------------------------------------
+## Key Concepts Demonstrated
 
-Spark consumes Kafka events and writes them into PostgreSQL.
-
-
-
-**Key Concepts Demonstrated**
-
-Event-driven architecture
-
-Structured Streaming micro-batch processing
-
-Kafka-Spark integration
-
-JDBC-based data persistence
-
-Containerized distributed systems
-
-Fault-tolerant stream processing with checkpointing
+- Event-driven architecture.
+- Structured Streaming micro-batch processing.
+- Kafka-Spark integration.
+- JDBC-based data persistence.
+- Containerized distributed systems.
+- Fault-tolerant stream processing with checkpointing.
