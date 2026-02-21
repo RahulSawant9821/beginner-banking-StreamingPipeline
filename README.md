@@ -5,61 +5,39 @@
 
 This project simulates a real-time banking transaction system using:
 
-Apache Kafka for event streaming
-
-PySpark Structured Streaming for real-time processing
-
-PostgreSQL for storage
-
-Docker Compose for infrastructure orchestration
-
-The pipeline generates synthetic UK banking transactions and streams them into Kafka, processes them with Spark, and persists them into PostgreSQL.
+- Apache Kafka for event streaming
+- PySpark Structured Streaming for real-time processing
+- PostgreSQL for storage
+- Docker Compose for infrastructure orchestration
+- The pipeline generates synthetic UK banking transactions and streams them into Kafka, processes them with Spark, and persists them into PostgreSQL.
 
 
 
 **Architecture**
 
-Producer → Kafka → Spark Structured Streaming → PostgreSQL
-
-Transaction events are generated every second.
-
-Events are published to Kafka topic transactions.
-
-Spark consumes and parses JSON messages.
-
-Micro-batches are written to PostgreSQL table raw_transactions.
+- Producer → Kafka → Spark Structured Streaming → PostgreSQL
+- Transaction events are generated every second.
+- Events are published to Kafka topic transactions.
+- Spark consumes and parses JSON messages.
+- Micro-batches are written to PostgreSQL table raw_transactions.
 
 
 **Tech Stack**
 
 Python
-
 Apache Kafka
-
 PySpark (Structured Streaming)
-
 PostgreSQL
-
 Docker & Docker Compose
-
 Faker (Synthetic Data Generation)
-
-
-
-📂 Project Structure
-├── producer.py              # Kafka transaction generator
-├── spark_streaming.py       # Spark consumer & PostgreSQL writer
-├── docker-compose.yml       # Kafka + Zookeeper + Postgres setup
-└── README.md
-
 
 
 
 **Setup Instructions**
 
 1️. Start Infrastructure
-docker-compose up -d
 
+docker-compose up -d
 
 This starts:
 
@@ -68,6 +46,8 @@ Zookeeper
 Kafka (localhost:9092)
 
 PostgreSQL (localhost:5432)
+
+
 
 2. Create PostgreSQL Table
 
@@ -89,6 +69,7 @@ CREATE TABLE raw_transactions (
     location TEXT,
     status TEXT
 );
+
 
 3. Start Kafka Producer
 python producer.py
